@@ -1,7 +1,7 @@
 IDE_LB      equ 4000h
 IDE_HB      equ 4001h
-IDE_CACHE   equ 8000h
-IDE_ID      equ 8800h
+IDE_CACHE   equ 4000h
+IDE_ID      equ 41FFh
 
 IDE_BANK    equ 0000001b
 
@@ -26,7 +26,7 @@ CMD_ID      equ ECh
 CMD_RD      equ 20h
 
 IDE_INIT:
-
+; ide_INIT fetches the 0.5KB DEVICE INFORMATION 
     IN B, (MMU_BREG)
     LD (K), A
     LD A, MMU_BANK_A
@@ -37,24 +37,24 @@ IDE_INIT:
     LD A, 0
     IN A, (REG_STATUS)
     BIT 7,A
-    JR nz, -3
+    JR nz, $-3
 
     LD A, 0
     IN A, (REG_STATUS)
     BIT 6,A
-    JR z, -3
+    JR z, $-3
 
     OUT (REG_STATUS), CMD_ID
 
     LD A, 0
     IN A, (REG_STATUS)
     BIT 7,A
-    JR nz, -3
+    JR nz, $-3
 
     LD A, 0
     IN A, (REG_STATUS)
     BIT 6,A
-    JR z, -3
+    JR z, $-3
 
     LD A, 00h
 
@@ -64,7 +64,7 @@ IDE_INIT:
     LD (IX+A), BC
 
     ADD A, 2
-    JR nc, -4
+    JR nc, $-4
 
     LD A, 00h
 
@@ -76,13 +76,15 @@ IDE_INIT:
     LD (IX+A), BC
 
     ADD A, 2
-    JR nc, -4
+    JR nc, $-4
 
     LD A, (K)
     OUT (MMU_BREG), A
     RET
 
 
+
+; IDE READ FUNCTION WILL BE UPDATED LATER
 IDE_READ:
     PUSH A
     PUSH BC
