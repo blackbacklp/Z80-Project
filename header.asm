@@ -1,35 +1,24 @@
 ;BANK MMU
 
-MMU_BANK_A  equ 00000001b
-MMU_BANK_B  equ 00000010b
-MMU_BANK_C  equ 00000100b
-MMU_BANK_D  equ 00001000b
-MMU_BANK_E  equ 00010000b
-MMU_BANK_F  equ 00100000b
-MMU_BANK_G  equ 01000000b
-MMU_BANK_H  equ 10000000b
+MMU_BANK_A  equ 00000000b
+MMU_BANK_B  equ 00000001b
+MMU_BANK_C  equ 00000010b
+MMU_BANK_D  equ 00000011b
+MMU_BANK_E  equ 00000100b
+MMU_BANK_F  equ 00000101b
+MMU_BANK_G  equ 00000110b
+MMU_BANK_H  equ 00000111b
+
 ;IDE Sektroengröße
 IDE_512     equ 1FFh
 IDE_1K      equ 2FFh
-;Support Register
 
-K   equ 7C00h
-T   equ 7C01h
-U   equ 7C02h
-V   equ 7C03h
-P   equ 7C04h
-W   equ 7C04h
 
 ;IR_LATCHES
 IR_CTC  equ F000h
 IR_SIO  equ F001h
 IR_PS2  equ F002h
 IR_IO   equ F003h
-;BOOT ROM SEKTOREN
-
-BOOT        equ 0000h
-BASIC       equ 0800h
-CHAR        equ 2000h
 
 
 ;SPEICHER UND I/O Adressen
@@ -92,6 +81,7 @@ RTC_WEK     equ 200Ch
 PS2_STAT    equ 3001h ;read-only
 PS2_COMM    equ 3001h ;write-only
 
+;MOS6581
 SID_FM_NOIS equ 0000001b
 SID_FM_SQUA equ 0000010b
 SID_FM_SAW  equ 0000100b
